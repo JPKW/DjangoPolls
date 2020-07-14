@@ -14,10 +14,12 @@ class PollAdmin(admin.ModelAdmin):
     """Definition of the Poll editor."""
     fieldsets = [
         (None, {'fields': ['text']}),
+        ('arg1', {'fields': ['arg1']}),
+        ('arg2', {'fields': ['arg2']}),
         ('Date information', {'fields': ['pub_date']}),
     ]
     inlines = [ChoiceInline]
-    list_display = ('text', 'pub_date')
+    list_display = ('text', 'arg1', 'arg2','pub_date')
     list_filter = ['pub_date']
     search_fields = ['text']
     date_hierarchy = 'pub_date'
