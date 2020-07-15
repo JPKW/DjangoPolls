@@ -13,6 +13,8 @@ urlpatterns = [
     path('contact', views.contact, name='contact'),
     path('about/', views.about, name='about'),
     path('seed/', views.seed, name='seed'),
+    path('casecreated/', views.casecreated, name='casecreated'),
+    path('newpoll/', views.newpoll, name='newpoll'),
     path('login/', 
         LoginView.as_view
         (

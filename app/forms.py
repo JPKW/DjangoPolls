@@ -16,3 +16,13 @@ class BootstrapAuthenticationForm(AuthenticationForm):
                                widget=forms.PasswordInput({
                                    'class': 'form-control',
                                    'placeholder':'Password'}))
+
+from django.forms import ModelForm
+from .models import Poll
+
+class CreatePollForm(ModelForm):
+    class Meta:
+        model = Poll
+        fields = ['text','arg1','arg2']
+
+

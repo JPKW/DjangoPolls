@@ -12,7 +12,7 @@ from django.shortcuts import get_object_or_404, render
 from django.utils import timezone
 from django.views.generic import ListView, DetailView
 from app.models import Choice, Poll
-
+from app.forms import CreatePollForm
 
 class PollListView(ListView):
     """Renders the home page, with a list of all polls."""
@@ -86,6 +86,28 @@ def vote(request, poll_id):
         selected_choice.votes += 1
         selected_choice.save()
         return HttpResponseRedirect(reverse('app:results', args=(poll.id,)))
+
+def newpoll(request):
+    """Renders the new poll page."""
+    form = CreatePollForm
+    assert isinstance(request, HttpRequest)
+    return render(request, 'app/newpoll.html', {
+            'title':'Submit new case',
+            'message':'Your application description page.',
+            'year':datetime.now().year,
+            'form':form
+        })
+
+def casecreated(request):
+    """Renders the casecreated page."""
+    assert isinstance(request, HttpRequest)
+    
+    return render(request, 'app/casecreated.html', {
+            'title':'About',
+            'message':'Your application description page.',
+            'year':datetime.now().year,
+
+        })
 
 @login_required
 def seed(request):
