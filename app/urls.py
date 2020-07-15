@@ -23,5 +23,5 @@ urlpatterns = [
         name='results'),
     path('<int:poll_id>/vote/', app.views.vote, name='vote'),
     path('newpoll/', app.views.newpoll, name='newpoll'),
-    path('casecreated/', app.views.casecreated, name='casecreated')
+    path('casecreated/', app.views.casecreated, name='casecreated'),
     ]

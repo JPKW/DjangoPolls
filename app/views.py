@@ -88,22 +88,29 @@ def vote(request, poll_id):
         return HttpResponseRedirect(reverse('app:results', args=(poll.id,)))
 
 def newpoll(request):
-    """Renders the new poll page."""
-    form = CreatePollForm
-    assert isinstance(request, HttpRequest)
-    return render(request, 'app/newpoll.html', {
-            'title':'Submit new case',
-            'message':'Your application description page.',
-            'year':datetime.now().year,
-            'form':form
-        })
+    """new poll page."""
+    if request.method == 'POST':
+        form = CreatePollForm(request.POST)
+        if form.is_valid():
+            form.save()
+            
+            return HttpResponseRedirect(reverse('app:home'))
+    else:
+        form = CreatePollForm
+        assert isinstance(request, HttpRequest)
+        return render(request, 'app/newpoll.html', {
+                'title':'Submit new case',
+                'message':'Your application description page.',
+                'year':datetime.now().year,
+                'form':form
+            })
 
 def casecreated(request):
     """Renders the casecreated page."""
     assert isinstance(request, HttpRequest)
     
     return render(request, 'app/casecreated.html', {
-            'title':'About',
+            'title':'casecreated',
             'message':'Your application description page.',
             'year':datetime.now().year,
 

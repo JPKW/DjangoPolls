@@ -3,15 +3,16 @@
 
 {% block content %}
 
-<form action="{% url 'app:casecreated'%}" method="post">
+<form action="{% url 'app:newpoll'%}" method="post">
     {% csrf_token %}
         <label for="casetext">Title:</label>
-        <input type="text" id="casetext" placeholder="Add a meaningful title" />
+        {% render_field form.text class="formcontrol" placeholder="Add a meaningful title" %}
+    <br />
         <label for="arg1">Party 1 Arguments:</label>
-        <input type="text" id="arg1" placeholder="Party 1: state your case" />
+        {% render_field form.arg1 class="formcontrol" placeholder="Party 1: state your case" rows="3" %}
+    <br />
         <label for="arg2">Party 2 Arguments:</label>
-        <input type="text" id="arg2" placeholder="Party 2: state your case" />
-    {% render_field form.arg1 %}
+        {% render_field form.arg2 class="formcontrol" placeholder="Party 2: state your case" rows="3" %}
     <button class="btn btn-primary" type="submit">Submit</button>
 </form>
 
