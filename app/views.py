@@ -87,6 +87,7 @@ def vote(request, poll_id):
         selected_choice.save()
         return HttpResponseRedirect(reverse('app:results', args=(poll.id,)))
 
+@login_required
 def newpoll(request):
     """new poll page."""
     if request.method == 'POST':
@@ -119,6 +120,8 @@ def newpoll(request):
                 'year':datetime.now().year,
                 'form':form
             })
+
+
 
 @login_required
 def seed(request):

@@ -2,7 +2,11 @@
 
 {% block content %}
 
-<h2>{{ poll.text }}</h2>
+<h2>{{poll.text}}</h2>
+<br />
+<p>Argument 1: {{poll.arg1}}</p>
+<br />
+<p>Argument 2: {{poll.arg2}}</p>
 <br />
 
 {% for choice in poll.choice_set.all %}
