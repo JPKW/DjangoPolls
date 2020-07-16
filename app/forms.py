@@ -20,6 +20,8 @@ class BootstrapAuthenticationForm(AuthenticationForm):
 
 from django.forms import ModelForm
 from .models import Poll
+from .models import Choice
+
 
 class CreatePollForm(ModelForm):
     class Meta:

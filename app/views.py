@@ -92,8 +92,23 @@ def newpoll(request):
     if request.method == 'POST':
         form = CreatePollForm(request.POST)
         if form.is_valid():
-            form.save()
-            
+            Poll = form.save()
+            choice = Choice()
+            choice.poll = Poll
+            choice.text = 'I agree with argument 1'
+            choice.votes = 0
+            choice.save()
+            choice = Choice()
+            choice.poll = Poll
+            choice.text = 'I agree with argument 2'
+            choice.votes = 0
+            choice.save()
+            choice = Choice()
+            choice.poll = Poll
+            choice.text = 'Neither argument is compelling'
+            choice.votes = 0
+            choice.save()
+
             return HttpResponseRedirect(reverse('app:home'))
     else:
         form = CreatePollForm
@@ -104,17 +119,6 @@ def newpoll(request):
                 'year':datetime.now().year,
                 'form':form
             })
-
-def casecreated(request):
-    """Renders the casecreated page."""
-    assert isinstance(request, HttpRequest)
-    
-    return render(request, 'app/casecreated.html', {
-            'title':'casecreated',
-            'message':'Your application description page.',
-            'year':datetime.now().year,
-
-        })
 
 @login_required
 def seed(request):

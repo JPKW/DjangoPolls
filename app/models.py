@@ -8,10 +8,12 @@ from django.utils import timezone
 
 class Poll(models.Model):
     """A poll object for use in the application views and repository."""
+    fields = ['case_title','p1_arg','p2_arg']
     text = models.CharField(max_length=200)
     arg1 = models.CharField(max_length=200)
     arg2 = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published', default=timezone.now)
+
 
     def total_votes(self):
         """Calculates the total number of votes for this poll."""
